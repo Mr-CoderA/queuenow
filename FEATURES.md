@@ -1,6 +1,6 @@
 # Features
 
-QueueNow is a queue management monorepo. The implemented surface today is the shared TypeScript package; API and UI packages are not present yet.
+QueueNow is a queue management monorepo with shared domain logic, an Express API package, and a React client.
 
 ## Product capabilities (implemented)
 
@@ -9,10 +9,12 @@ QueueNow is a queue management monorepo. The implemented surface today is the sh
 - **Position**: 1-based index among waiting tickets; `0` while serving; `-1` if missing.
 - **Wait estimate**: `position × averageServiceMinutes` (default 5); non-positive position or negative average yields `0`.
 - **Metrics enrichment**: attach `position` and `estimated_wait_minutes` to each ticket in a snapshot.
+- **API** (`@queuenow/server`): Express routes for auth, queues, and tickets; Drizzle schema and query builders over a DAO interface.
+- **Web app** (`@queuenow/app`): React + Vite + Tailwind UI for login/register, queue list/create/detail, ticket controls; API client with MSW handlers for local/dev testing.
 
 ## Architecture
 
 - **Layout**: npm workspaces under `packages/*`, orchestrated by Turborepo.
-- **Active package**: `packages/shared` (`@queuenow/shared`) — TypeScript sources in `src/`, Vitest tests in `__tests__/`, build output in `dist/`.
+- **Packages**: `packages/shared`, `packages/server`, `packages/app`.
 - **Tooling**: Node `>=20`, TypeScript, Turbo `build` / `test` pipelines (`turbo.json`).
 - **Config surface**: `.env.example` names `DATABASE_URL` (managed PostgreSQL) and `AUTH_SECRET` (session/hashing secret). Values are not stored in the repo.

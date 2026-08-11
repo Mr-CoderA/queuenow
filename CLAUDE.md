@@ -18,9 +18,9 @@ npm install
 npm run build
 ```
 
-Optional: `npm test` (runs workspace tests via Turbo; shared package uses Vitest).
+Optional: `npm test` (runs workspace tests via Turbo; packages use Vitest). Install without `NODE_ENV=production` so test `devDependencies` are present.
 
-`NODE_ENV=production` skips npm `devDependencies`. Build-required tools (Turbo, TypeScript) belong in `dependencies` so the commands above succeed without flipping `NODE_ENV`.
+`NODE_ENV=production` skips npm `devDependencies`. Build-required tools (Turbo, TypeScript, Vite, Tailwind) belong in `dependencies` so the commands above succeed without flipping `NODE_ENV`.
 
 ## Security
 
