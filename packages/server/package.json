@@ -14,7 +14,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "npm run build --workspace=@queuenow/shared && tsc -p tsconfig.json",
     "test": "vitest run",
     "start": "node dist/index.js"
   },
